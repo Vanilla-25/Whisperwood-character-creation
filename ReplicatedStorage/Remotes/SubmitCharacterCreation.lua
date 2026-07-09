@@ -1,0 +1,4 @@
+-- RemoteEvent placeholder
+-- This file documents the RemoteEvent structure.
+-- In Roblox Studio, create a RemoteEvent instance at ReplicatedStorage/Remotes/SubmitCharacterCreation
+-- Expected payload: { name, appearance, talent }
