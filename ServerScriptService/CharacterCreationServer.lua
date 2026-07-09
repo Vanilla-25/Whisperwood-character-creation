@@ -63,16 +63,25 @@ end)
 -- Character Creation Handler
 -- =======================
 
-local function filterName(name)
+local function filterName(name, player)
 	-- Use TextService to filter the name
 	local success, filtered
-
+	
 	success, filtered = pcall(function()
 		return TextService:FilterStringAsync(name, Enum.TextFilterContext.PublicChat, player)
 	end)
 
 	if success then
-		return filtered
+		-- FilterStringAsync returns a TextFilterResult, need to call GetNonChatStringForBroadcastAsync
+		local filterSuccess, result = pcall(function()
+			return filtered:GetNonChatStringForBroadcastAsync()
+		end)
+		if filterSuccess then
+			return result
+		else
+			print("Name filtering result conversion failed for: " .. name)
+			return nil
+		end
 	else
 		print("Name filtering failed for: " .. name)
 		return nil
