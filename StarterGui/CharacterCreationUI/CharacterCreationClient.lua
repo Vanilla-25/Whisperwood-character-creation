@@ -7,7 +7,9 @@ local UserInputService = game:GetService("UserInputService")
 local TweenService = game:GetService("TweenService")
 
 local TalentData = require(ReplicatedStorage.Modules.TalentData)
-local SubmitCharacterCreation = ReplicatedStorage.Remotes.SubmitCharacterCreation
+
+-- Wait for RemoteEvent to be available
+local SubmitCharacterCreation = ReplicatedStorage.Remotes:WaitForChild("SubmitCharacterCreation")
 
 -- =======================
 -- State Management
